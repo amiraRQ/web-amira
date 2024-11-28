@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Fungsi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(to right, #598ceb, #8f82a8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #333;
+        }
+        .calculator-container {
+            background: rgb(91, 107, 248);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            width: 400px;
+            text-align: center;
+        }
+        h2 {
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        input[type="text"], button {
+            padding: 10px;
+            margin: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: all 0.3s;
+            width: calc(100% - 40px); /* Adjust for margins */
+        }
+        button {
+            background-color: #ff0000;
+            color: white;
+        }
+        button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+        .result-container {
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            max-height: 200px;
+            overflow-y: auto;
+            text-align: left; /* Align text to left */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        .step {
+            margin: 5px 0;
+            padding: 10px;
+            border-left: 4px solid #007bff;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+        .explanation {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<div class="calculator-container">
+    <h2>Hitung Fungsi</h2>
+    <input type="text" id="functionInput" placeholder="Masukkan fungsi (gunakan x)" required>
+    <button onclick="calculateFunction()">Hitung</button>
+
+    <div class="result-container" id="results"></div>
+</div>
+
+<script>
+    function calculateFunction() {
+        const func = document.getElementById('functionInput').value;
+        const resultsDiv = document.getElementById('results');
+        resultsDiv.innerHTML = ''; // Clear previous results
+
+        const xValues = Array.from({ length: 21 }, (_, i) => i - 10); // x values from -10 to 10
+
+        // Langkah perhitungan
+        const stepDiv = document.createElement('div');
+        stepDiv.className = 'step';
+        stepDiv.textContent = `Rumus: f(x) = ${func}`;
+        resultsDiv.appendChild(stepDiv);
+
+        xValues.forEach(x => {
+            const resultDiv = document.createElement('div');
+            resultDiv.className = 'step';
+
+            try {
+                const evaluatedResult = eval(func.replace(/x/g, x));
+                resultDiv.textContent = `f(${x}) = ${evaluatedResult}`;
+            } catch {
+                resultDiv.textContent = `f(${x}) = Error`;
+            }
+
+            resultsDiv.appendChild(resultDiv);
+        });
+
+        // Penjelasan
+        const explanationDiv = document.createElement('div');
+        explanationDiv.className = 'explanation';
+        explanationDiv.textContent = "Masukkan nilai x dari -10 hingga 10 untuk menghitung nilai fungsi.";
+        resultsDiv.appendChild(explanationDiv);
+    }
+</script>
+
+</body>
+</html>

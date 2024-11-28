@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Amira Raa</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5dc;
+            color: #333333;
+        }
+
+        header {
+            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin: 0;
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav a {
+            background-color: #ffb3ba;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        nav a:hover {
+            background-color: #ff9a9e;
+            transform: scale(1.05);
+        }
+
+        .content {
+            padding: 20px;
+            display: none;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            background: #ffffff;
+            margin: 20px;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .beranda-content {
+            position: relative;
+            overflow: hidden;
+            height: 400px;
+        }
+
+        .background-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.5);
+        }
+
+        .text-animation {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+            text-align: center;
+            animation: slideIn 5s infinite;
+        }
+
+        @keyframes slideIn {
+            0% { transform: translate(-50%, -100%); }
+            50% { transform: translate(-50%, 0); }
+            100% { transform: translate(-50%, -100%); }
+        }
+
+        .materi-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .materi-card {
+            background-color: #ffe4e6;
+            color: #333333;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 10px;
+            text-align: center;
+            width: 250px;
+            position: relative;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .dropbtn {
+            background-color: #ffb6b9;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #ffdde1;
+            min-width: 200px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 20;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+
+        .dropdown-content a {
+            color: #333333;
+            padding: 10px;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.5s;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ffe4e6;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .alat-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .alat-card {
+            background-color: #d4f5e9;
+            color: #333333;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 10px;
+            text-align: center;
+            width: 200px;
+            transition: transform 0.2s;
+        }
+
+        .alat-card:hover {
+            transform: scale(1.05);
+        }
+
+        footer {
+            background: #2a2a72;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .profile-pic {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            margin: 20px auto;
+            border: 3px solid #ffb3ba;
+        }
+
+        .bio-container {
+            background-color: #fdf6e3;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .bio-container h3 {
+            margin-top: 0;
+            color: #ff9a9e;
+        }
+
+        .bio-item {
+            background-color: #ffffff;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>MATH CLASS</h1>
+        <img src ="amira.jpg.jpeg" alt="Foto Profil" class="profile-pic"> <!-- Ganti dengan path foto Anda -->
+        <nav>
+            <ul>
+                <li><a href="#" onclick="showSection('beranda')"><i class="fas fa-home"></i> Beranda</a></li>
+                <li><a href="#" onclick="showSection('materi')"><i class="fas fa-book"></i> Materi</a></li>
+                <li><a href="#" onclick="showSection('refleksi')"><i class="fas fa-book"></i> Refleksi</a></li>
+                <li><a href="#" onclick="showSection('alat')"><i class="fas fa-tools"></i> Alat</a></li>
+                <li><a href="#" onclick="showSection('biodata')"><i class="fas fa-user"></i> Data Diri</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="beranda" class="content active">
+        <h2 style="font-size: 2.5em; color: #0d4bd1; text-shadow: 2px 2px 5px rgba(0,0,0,0.3);"><P>BERANDA</P></h2>
+        <div class="beranda-content">
+            <img src="math.jpg" alt="Gambar Latar" class="background-image"> <!-- Ganti dengan path gambar Anda -->
+            <div class="text-animation">
+                <h2 style="font-size: 2.5em;">SELAMAT DATANG DI MATH CLASS!</h2>
+                <p style="font-size: 1.5em;">Nikmati berbagai materi dan alat yang telah kami siapkan untuk memudahkan belajar matematika.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="materi" class="content">
+        <h2>Materi Matematika</h2>
+        <div class="materi-container">
+            <div class="materi-card">
+                <h3>SEKOLAH MENENGAH PERTAMA (SMP)</h3>
+                <div class="dropdown">
+                    <button class="dropbtn">Pilih Kelas</button>
+                    <div class="dropdown-content">
+                        <a href="https://drive.google.com/file/d/1cOy7CMjBXfm_rKRsIyI7kvfpnpoUA14a/view" target="_blank">Kelas 7</a>
+                        <a href="https://drive.google.com/file/d/1xFu6RfCDapx9-UR9MwcmhCNUsBKpu8eR/view" target="_blank">Kelas 8</a>
+                        <a href="https://drive.google.com/file/d/1tBD652dd44hwBiz_SRjQX_FVYPSMJ1bJ/view" target="_blank">Kelas 9</a>
+                    </div>
+                </div>
+            </div>
+            <div class="materi-card">
+                <h3>SEKOLAH MENENGAH ATAS (SMA)</h3>
+                <div class="dropdown">
+                    <button class="dropbtn">Pilih Kelas</button>
+                    <div class="dropdown-content">
+                        <a href="https://drive.google.com/open?id=11FQqpQ6sxtePV7n494w40CyX_jycou1_&usp=drive_copy" target="_blank">Kelas 10</a>
+                        <a href="https://drive.google.com/open?id=1OlWgV3unRi0f-jjVkudPYwf2pWLN8-YP&usp=drive_copy" target="_blank">Kelas 11</a>
+                        <a href="https://drive.google.com/open?id=1Ynq1YesQ2f2Ae2HwhcACxyzCzbx32v83&usp=drive_copy" target="_blank">Kelas 12</a>
+                    </div>
+                </div>
+            </div>
+            <div class="materi-card"> <!-- Kotak Buku Lengkap dan Bank Soal -->
+                <h3>BUKU MATEMATIKA LENGKAP DAN BANK SOAL</h3>
+                <div class="dropdown">
+                    <button class="dropbtn">PILIH</button>
+                    <div class="dropdown-content">
+                        <a href="https://drive.google.com/drive/folders/19hJ5m4Z6EvKdoJAujjc0hXrSiADLQ_BP" target="_blank">BUKU PAKET</a>
+                        <a href="https://drive.google.com/drive/folders/0B8mFf8v1sd9YQXZYN2Rrb0FEUGc?resourcekey=0-r_NeZVBiAPIClU5bDr_7mA" target="_blank">BANK SOAL UN</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="refleksi" class="content active">
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <!-- Link ke Materi Refleksi -->
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="materirefleksi.html">Materi Refleksi (Pencerminan)</a>
+                </li>
+                <!-- Link ke file baru -->
+                <li class="nav-item">
+                    <a class="nav-link" href="rodiatul.php">Materi Baru</a>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="alat" class="content">
+        <h2>Alat Bantu MATH CLASS:</h2>
+        <div class="alat-container">
+            <div class="alat-card">
+                <h3>Kalkulator</h3>
+                <a href="kalkulator.html" style="color: white;">Buka</a>
+            </div>
+            <div class="alat-card">
+                <h3>Menghitung Fungsi</h3>
+                <a href="hitung_fungsi.html" style="color: white;">Buka</a>
+            </div>
+            <div class="alat-card">
+                <h3>Luas Segitiga</h3>
+                <a href="luas_segitiga.html" style="color: white;">Buka</a>
+            </div>
+            <div class="alat-card">
+                <h3>Luas Lingkaran</h3>
+                <a href="Lingkaran.html" style="color: white;">Buka</a>
+            </div>
+            <div class="alat-card">
+                <h3>Luas Persegi</h3>
+                <a href="Persegi.html" style="color: white;">Buka</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="biodata" class="content">
+        <h2>Data Diri :</h2>
+        <div class="bio-container">
+            <h3>Biodata</h3>
+            <img src ="amira propil.jpeg" alt="Foto Profil" class="profile-pic"> <!-- Ganti dengan path foto Anda -->
+
+            <div class="bio-item">
+                <p><strong>Nama:</strong> Amira Rodiatul Q</p>
+            </div>
+            <div class="bio-item">
+                <p><strong>TTL:</strong> Batu Rimpang, 9 Agustus 2004</p>
+            </div>
+            <div class="bio-item">
+                <p><strong>Hobi:</strong> Membaca Novel</p>
+            </div>
+            <div class="bio-item">
+                <p><strong>Agama:</strong> Islam</p>
+            </div>
+            <div class="bio-item">
+                <p><strong>Jenis Kelamin:</strong> Perempuan</p>
+            </div>
+            <div class="bio-item">
+                <p><strong>Alamat:</strong> Lombok Barat</p>
+            </div>
+            <div class="bio-item">
+                <p><strong>Kontak:</strong> 087756038840</p>
+            </div>
+            <div class="bio-item">
+                <p><strong>Email:</strong> amirarodiatulqobi@gmail.com</p>
+            </div>>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Website Amira raa</p>
+    </footer>
+
+    <script>
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.content');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+        }
+    </script>
+</body>
+</html>

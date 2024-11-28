@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mencari Luas Segitiga</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #11cbcb, #2529fc);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            width: 300px;
+            text-align: center;
+        }
+        input[type="number"], button {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #007bff;
+            width: 100%;
+            outline: none;
+            font-size: 16px;
+        }
+        button {
+            background-color: #092849;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #result {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            background: white;
+            color: #333;
+            border-radius: 5px;
+        }
+        .step {
+            margin: 5px 0;
+            padding: 5px;
+            border-left: 4px solid #09d3f7;
+            background: #e9ecef;
+            color: #333;
+        }
+        h2 {
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Mencari Luas Segitiga</h2>
+    <input type="number" id="base" placeholder="Panjang Alas (cm)" required>
+    <input type="number" id="height" placeholder="Tinggi (cm)" required>
+    <button onclick="calculateArea()">Hitung Luas</button>
+
+    <div id="result"></div>
+</div>
+
+<script>
+    function calculateArea() {
+        const base = parseFloat(document.getElementById('base').value);
+        const height = parseFloat(document.getElementById('height').value);
+        const resultDiv = document.getElementById('result');
+        resultDiv.innerHTML = ''; // Clear previous results
+
+        if (isNaN(base) || isNaN(height)) {
+            resultDiv.textContent = "Mohon masukkan angka yang valid.";
+            return;
+        }
+
+        // Langkah 1: Menampilkan rumus
+        const formula = "Rumus Luas Segitiga: Luas = 0.5 * Alas * Tinggi";
+        const step1 = document.createElement('div');
+        step1.className = 'step';
+        step1.textContent = formula;
+        resultDiv.appendChild(step1);
+
+        // Langkah 2: Menghitung luas
+        const area = 0.5 * base * height;
+
+        // Langkah 3: Menampilkan langkah-langkah perhitungan
+        const step2 = document.createElement('div');
+        step2.className = 'step';
+        step2.textContent = `Langkah 2: Menghitung Luas = 0.5 * ${base} * ${height}`;
+        resultDiv.appendChild(step2);
+
+        // Langkah 4: Menampilkan hasil
+        const step3 = document.createElement('div');
+        step3.className = 'step';
+        step3.textContent = `Luas segitiga adalah: ${area.toFixed(2)} cm²`;
+        resultDiv.appendChild(step3);
+    }
+</script>
+
+</body>
+</html>

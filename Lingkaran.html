@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mencari Luas Lingkaran</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: #fff;
+            padding: 50px;
+            text-align: center;
+        }
+        .container {
+            background: rgba(15, 15, 15, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            max-width: 400px;
+        }
+        input[type="number"], input[type="button"] {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #3498db;
+            width: calc(100% - 22px);
+            transition: border 0.3s;
+        }
+        input[type="number"]:focus {
+            border-color: #2980b9;
+            outline: none;
+        }
+        input[type="button"] {
+            background-color: #3498db;
+            color: rgb(19, 18, 18);
+            cursor: pointer;
+            border: none;
+            font-weight: bold;
+        }
+        input[type="button"]:hover {
+            background-color: #2980b9;
+        }
+        h2 {
+            color: #3498db;
+        }
+        #formula {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        #calculation {
+            margin-top: 20px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        #result {
+            font-size: 22px;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Mencari Luas Lingkaran</h2>
+    <label>Jari-jari (r): <input type="number" id="radius" min="0" step="any"></label><br>
+    <label>Nilai Pi (π): <input type="number" id="pi" value="3.14" step="any"></label><br>
+    <input type="button" value="Hitung" onclick="calculateArea()">
+    <div id="result"></div>
+    <div id="formula">
+        <strong>Rumus:</strong> Luas = π × r²
+    </div>
+    <div id="calculation"></div>
+</div>
+
+<script>
+function calculateArea() {
+    const radius = parseFloat(document.getElementById('radius').value);
+    const pi = parseFloat(document.getElementById('pi').value);
+    
+    if (radius <= 0 || pi <= 0) {
+        alert("Jari-jari dan nilai Pi harus lebih besar dari 0");
+        return;
+    }
+
+    // Menghitung luas
+    const area = pi * radius * radius; // Luas
+
+    // Menampilkan hasil perhitungan
+    document.getElementById('result').innerHTML = `Luas Lingkaran: ${area.toFixed(2)}`;
+    
+    // Menampilkan langkah-langkah perhitungan
+    document.getElementById('calculation').innerHTML = `
+        Langkah-langkah:<br>
+        Luas = π × r² <br>
+        Luas = ${pi} × (${radius} × ${radius})<br>
+        Luas = ${pi} × ${radius * radius}<br>
+        Luas = ${area.toFixed(2)}
+    `;
+}
+</script>
+
+</body>
+</html>
